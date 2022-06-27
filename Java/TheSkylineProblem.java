@@ -23,9 +23,10 @@ class Solution {
             if (a[0] != b[0]) {
                 return a[0] - b[0];
             } else {
-                return (a[2] == 1 ? -a[1] : a[2]) - (b[2] == 1 ? -b[1] : b[1]);
+                return b[2] - a[2];
             }
         });
+        
         for (int[] coordinate : coordinates) {
             if (coordinate[2] == 1) {
                 maxPQ.add(coordinate[1]);

@@ -6,20 +6,20 @@ class Solution {
         StringBuilder current = new StringBuilder();
         
         if (digits.length() == 0) return combinations;
-        letterCombinationsHelper(digits, letters, combinations, 0, current);
+        letterCombinationsHelper(digits, letters, combinations, current);
         return combinations;
     }
     
-    private void letterCombinationsHelper(String digits, String[] letters, List<String> combinations, int index, StringBuilder current) {
-        if (index == digits.length()) {
-            if (index != 0) combinations.add(current.toString());
+    private void letterCombinationsHelper(String digits, String[] letters, List<String> combinations, StringBuilder current) {
+        if (current.length() == digits.length()) {
+            if (current.length() != 0) combinations.add(current.toString());
             return;
         }
         
-        int indexLetter = Character.getNumericValue(digits.charAt(index));
+        int indexLetter = Character.getNumericValue(digits.charAt(current.length()));
         for (int i = 0; i < letters[indexLetter].length(); i++) {
             current.append(letters[indexLetter].charAt(i));
-            letterCombinationsHelper(digits, letters, combinations, index + 1, current);
+            letterCombinationsHelper(digits, letters, combinations, current);
             current.deleteCharAt(current.length() - 1);
         }
     }

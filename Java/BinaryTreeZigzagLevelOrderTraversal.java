@@ -4,15 +4,6 @@ class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> list = new ArrayList<>();
         traverse(root, list, 0);
-        
-        for (int i = 0; i < list.size(); i++) {
-            if (i % 2 != 0) {
-                List<Integer> temp = list.get(i);
-                Collections.reverse(temp);
-                list.set(i, temp);
-            }
-        }
-        
         return list;
     }
     
@@ -25,7 +16,11 @@ class Solution {
             list.add(new ArrayList<Integer>());
         }
         
-        list.get(level).add(root.val);
+        if (level % 2 != 0) {
+            list.get(level).add(0, root.val);
+        } else {
+            list.get(level).add(root.val);
+        }
         
         traverse(root.left, list, level + 1);
         traverse(root.right, list, level + 1);

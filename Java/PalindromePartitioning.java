@@ -1,6 +1,8 @@
 import java.util.*;
 class Solution {
     public List<List<String>> partition(String s) {
+        if(s == null || s.length() == 0) return new ArrayList<>();
+        
         List<List<String>> result = new ArrayList<>();
         helper(s, 0, result, new ArrayList<>());
         return result;
@@ -13,20 +15,22 @@ class Solution {
         }
         
         for (int i = index; i < s.length(); i++) {
-            boolean palindrome = true;
             String str = s.substring(index, i + 1);
-            for (int j = 0; j < (str.length()/2); j++) {
-                if (str.charAt(j) != str.charAt(str.length() - j - 1)) {
-                    palindrome = false;
-                    break;
-                }
-            }
             
-            if (palindrome == true) {
+            if (isPalindrome(str)) {
                 tempList.add(str);
                 helper(s, i + 1, result, tempList);
                 tempList.remove(tempList.size() - 1);   
             }
         }
+    }
+    
+    private boolean isPalindrome(String str) {
+        for (int j = 0; j < (str.length()/2); j++) {
+            if (str.charAt(j) != str.charAt(str.length() - j - 1)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

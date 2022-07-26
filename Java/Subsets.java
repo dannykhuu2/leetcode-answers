@@ -15,4 +15,14 @@ class Solution {
         
         return result;
     }
+
+    // private void backtrack(int[] nums, List<List<Integer>> result, List<Integer> tempList, int start) {
+    //     result.add(new ArrayList<>(tempList));
+    //     for (int i = start; i < nums.length; i++) {
+    //         tempList.add(nums[i]);
+    //         backtrack(nums, result, tempList, i + 1);
+    //         tempList.remove(tempList.size() - 1);
+    //     }
+                   
+    // }
 }

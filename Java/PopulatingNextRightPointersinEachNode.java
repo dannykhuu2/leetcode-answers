@@ -1,22 +1,23 @@
 class Solution {
     public Node connect(Node root) {
-        helper(root);
+        traverse(root);
         return root;
     }
     
-    private void helper(Node root) {
-        if(root == null) {
+    private void traverse(Node root) {
+        if (root == null) {
             return;
         }
-
-        if(root.left != null){
+        
+        if (root.left != null) {
             root.left.next = root.right;
-            if(root.next != null)
+            if (root.next != null) {
                 root.right.next = root.next.left;
+            }
         }
-
-        helper(root.left);
-        helper(root.right);
+        
+        traverse(root.left);
+        traverse(root.right);
     }
 }
 

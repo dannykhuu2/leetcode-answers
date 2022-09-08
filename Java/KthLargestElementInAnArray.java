@@ -18,14 +18,13 @@ class Solution {
     }
     
     private int partition(int[] nums, int left, int right) {
-        int pivot = left;
+        int pivot = right;
         int temp;
-        
         while (left <= right) {
-            while (left <= right && nums[left] <= nums[pivot]) {
+            while (left <= right && nums[left] < nums[pivot]) {
                 left++;
             }
-            while (left <= right && nums[right] > nums[pivot]) {
+            while (left <= right && nums[right] >= nums[pivot]) {
                 right--;
             }
             if (left > right) {
@@ -35,9 +34,9 @@ class Solution {
             nums[left] = nums[right];
             nums[right] = temp;
         }
-        temp = nums[right];
-        nums[right] = nums[pivot];
+        temp = nums[left];
+        nums[left] = nums[pivot];
         nums[pivot] = temp;
-        return right;
+        return left;
     }
 }

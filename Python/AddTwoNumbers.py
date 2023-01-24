@@ -8,28 +8,18 @@ class Solution:
         temp = ListNode
         result = temp
         carry = 0
-        while l1 and l2:
-            total = carry + l1.val + l2.val
-            carry = 1 if total >= 10 else 0
-            total = total % 10
-            l1 = l1.next
-            l2 = l2.next
-            temp.next = ListNode(total)
-            temp = temp.next
+        while l1 or l2:
+            num1 = num2 = 0
 
-        while l1:
-            total = carry + l1.val
+            if l1:
+                num1 = l1.val
+                l1 = l1.next
+            if l2:
+                num2 = l2.val
+                l2 = l2.next
+            total = num1 + num2 + carry
             carry = 1 if total >= 10 else 0
             total = total % 10
-            l1 = l1.next
-            temp.next = ListNode(total)
-            temp = temp.next
-
-        while l2:
-            total = carry + l2.val
-            carry = 1 if total >= 10 else 0
-            total = total % 10
-            l2 = l2.next
             temp.next = ListNode(total)
             temp = temp.next
 
